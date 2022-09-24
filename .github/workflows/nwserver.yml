@@ -52,8 +52,8 @@ jobs:
           dotnet run -app $APP_ID -depot $CONTENT_DEPOT_ID -beta $BRANCH -betapassword $BRANCH_PASSWORD -username ${{ secrets.STEAM_USER }} -password ${{ secrets.STEAM_PASS }}
           cd ../..
           mkdir data
-          cp -r DepotDownloader/DepotDownloader/depots/$BIN_DEPOT_ID/$BUILD_ID/ data/
-          cp -r DepotDownloader/DepotDownloader/depots/$CONTENT_DEPOT_ID/$BUILD_ID/ data/
+          cp -r DepotDownloader/DepotDownloader/depots/$BIN_DEPOT_ID/$BUILD_ID/. data/
+          cp -r DepotDownloader/DepotDownloader/depots/$CONTENT_DEPOT_ID/$BUILD_ID/. data/
           ls data/
       #- run: nimble install neverwinter -y
       # docker
