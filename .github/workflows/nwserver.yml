@@ -55,13 +55,13 @@ jobs:
           cp -r DepotDownloader/DepotDownloader/depots/$BIN_DEPOT_ID/$BUILD_ID/. data/
           cp -r DepotDownloader/DepotDownloader/depots/$CONTENT_DEPOT_ID/$BUILD_ID/. data/
 
-          mkdir -r docker_data/bin/x86
+          mkdir -p docker_data/bin/x86
           cp data/bin/linux-x86/nwserver-linux docker_data/bin/x86/nwserver-linux
 
-          mkdir -r docker_data/bin/arm64
+          mkdir -p docker_data/bin/arm64
           cp data/bin/linux-arm64/nwserver-linux docker_data/bin/arm64/nwserver-linux
 
-          mkdir -r docker_data/lang/en/data
+          mkdir -p docker_data/lang/en/data
           cp data/lang/en/data/dialog.tlk docker_data/lang/en/data/dialog.tlk
       - run: |
           nimble install neverwinter -y
