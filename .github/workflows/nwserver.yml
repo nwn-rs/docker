@@ -1,4 +1,4 @@
-name: Generate
+name: Nwserver
 
 on:
   workflow_dispatch:
@@ -9,7 +9,7 @@ jobs:
       matrix:
         version: ["8193.35"]
         platform: ["linux-x86", "linux-arm64"]
-    name: ${{ matrix.platform }} ${{ matrix.version }}
+    name: ${{ matrix.version }} ${{ matrix.platform }}
     runs-on: ubuntu-latest
     env:
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -51,7 +51,7 @@ jobs:
           context: nwserver
           platforms: linux/amd64
           push: true
-          tags: nwn.rs/nwserver:${{ matrix.version }}
+          tags: nwnrs/nwserver:${{ matrix.version }}
       # arm64
       - name: Building arm64 nwserver
         if: ${{ matrix.platform }} == 'linux-arm64'
@@ -62,4 +62,4 @@ jobs:
           context: nwserver
           platforms: linux/arm64
           push: true
-          tags: nwn.rs/nwserver:${{ matrix.version }}
+          tags: nwnrs/nwserver:${{ matrix.version }}
