@@ -39,7 +39,7 @@ jobs:
           cd DepotDownloader/DepotDownloader
           dotnet run -app 704450 -depot 704454 -beta preview -betapassword previewpreview -username ${{ secrets.STEAM_USER }} -password ${{ secrets.STEAM_PASS }}
           cd ../..
-          cp -r DepotDownloader/DepotDownloader/depots/704454/7843474/ nwserver/data
+          cp -r DepotDownloader/DepotDownloader/depots/704454/9560766/ nwserver/data
           ls nwserver/data/bin
       # x86
       - name: Building x86 nwserver
