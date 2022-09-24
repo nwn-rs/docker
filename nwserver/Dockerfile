@@ -1,15 +1,16 @@
 FROM beamdog/nwserver:latest AS nwn
 FROM debian:bookworm-slim
-COPY --from=nwn /nwn/data/data/ /nwn/data/data/
 ARG NWN_ARCH=linux-x86
 LABEL maintainer "urothis@gmail.com"
 RUN apt-get update && \
   apt-get --no-install-recommends -y install libc6 libstdc++6 && \
-  rm -r /var/cache/apt /var/lib/apt/lists
-RUN mkdir -p /nwn/home /nwn/run
+  rm -r /var/cache/apt /var/lib/apt/lists && \
+  mkdir -p /nwn/home /nwn/run
+COPY --from=nwn /nwn/data/data/ /nwn/data/data/
+COPY --from=nwn /nwn/data/lang/ /nwn/data/lang/
+COPY scripts/run-server.sh scripts/prep-nwn-ini.awk scripts/prep-nwnplayer-ini.awk /nwn/
 COPY /data/bin/${NWN_ARCH} /nwn/data/bin/${NWN_ARCH}
 RUN chmod +x /nwn/data/bin/${NWN_ARCH}/nwserver-linux
-COPY nwserver/ /nwn/
 RUN chmod +x /nwn/run-server.sh
 VOLUME /nwn/home
 EXPOSE ${NWN_PORT:-5121}/udp

@@ -75,6 +75,8 @@ if [[ "${NWN_NWSYNCHASH}" != "" ]]; then
   args+=("-nwsynchash" "${NWN_NWSYNCHASH}")
 fi
 
+dpkg --print-architecture
+
 set +e
 LD_PRELOAD=$NWN_LD_PRELOAD LD_LIBRARY_PATH=$NWN_LD_LIBRARY_PATH ./nwserver-linux \
   $NWN_EXTRA_ARGS \
