@@ -8,10 +8,10 @@ RUN apt-get update && \
 COPY --from=nwn /nwn/data/data/ /nwn/data/data/
 COPY --from=nwn /nwn/data/lang/ /nwn/data/lang/
 COPY scripts/run-server.sh scripts/prep-nwn-ini.awk scripts/prep-nwnplayer-ini.awk /nwn/
-COPY /data/bin/ /nwn/data/bin/
-RUN mkdir /nwn/data/bin/linux
-RUN if $(dpkg --print-architecture) = "amd64"; then cp /nwn/data/bin/linux-x86/nwserver-linux /nwn/data/bin/linux/nwserver-linux ; else cp /nwn/data/bin/linux-arm64/nwserver-linux /nwn/data/bin/linux/nwserver-linux ; fi
-RUN rm -r /nwn/data/bin/linux-x86 /nwn/data/bin/linux-arm64 /nwn/data/bin/macos /nwn/data/bin/win32
+COPY /data/bin/linux-x86/nwserver-linux /nwn/data/bin/x86
+COPY /data/bin/linux-arm64/nwserver-linux /nwn/data/bin/arm64
+RUN mkdir /nwn/data/bin/linux && dpkg --print-architecture
+RUN if $(dpkg --print-architecture) = "amd64"; then mv /nwn/data/bin/x86/nwserver-linux /nwn/data/bin/linux/nwserver-linux ; else mv /nwn/data/bin/linux-arm64/nwserver-linux /nwn/data/bin/linux/nwserver-linux ; fi
 RUN chmod +x /nwn/data/bin/linux/nwserver-linux
 RUN chmod +x /nwn/run-server.sh
 VOLUME /nwn/home
