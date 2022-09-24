@@ -54,15 +54,23 @@ jobs:
           mkdir data
           cp -r DepotDownloader/DepotDownloader/depots/$BIN_DEPOT_ID/$BUILD_ID/. data/
           cp -r DepotDownloader/DepotDownloader/depots/$CONTENT_DEPOT_ID/$BUILD_ID/. data/
-          ls data/
-      #- run: nimble install neverwinter -y
+
+          cp data/bin/linux-x86/nwserver-linux docker_data/bin/x86/nwserver-linux
+          cp data/bin/linux-arm64/nwserver-linux docker_data/bin/arm64/nwserver-linux
+
+          ls docker_data/bin
+          ls docker_data/lang
+          ls docker_data/data
+      - run: |
+          nimble install neverwinter -y
+          nwn_resman_pkgsrv -d docker_data/data -k data/nwn_base
       # docker
-      #- name: Docker Build & Push
-      #  uses: docker/build-push-action@v3
-      #  with:
-      #    context: nwserver
-      #    platforms: |
-      #      linux/amd64
-      #      linux/arm64
-      #    push: true
-      #    tags: nwnrs/nwserver:${{ matrix.version }}
+      - name: Docker Build & Push
+        uses: docker/build-push-action@v3
+        with:
+          context: nwserver
+          platforms: |
+            linux/amd64
+            linux/arm64
+          push: true
+          tags: nwnrs/nwserver:${{ matrix.version }}

@@ -1,15 +1,14 @@
-FROM beamdog/nwserver:latest AS nwn
 FROM debian:bookworm-slim
 LABEL maintainer "urothis@gmail.com"
 RUN apt-get update && \
   apt-get --no-install-recommends -y install libc6 libstdc++6 && \
   rm -r /var/cache/apt /var/lib/apt/lists && \
   mkdir -p /nwn/home /nwn/run
-COPY --from=nwn /nwn/data/data/ /nwn/data/data/
-COPY --from=nwn /nwn/data/lang/ /nwn/data/lang/
+COPY docker_data/data/ /nwn/data/data/
+COPY docker_data/lang/ /nwn/data/lang/
+COPY docker_data/bin/linux-x86/nwserver-linux /nwn/data/bin/x86/
+COPY docker_data/bin/linux-arm64/nwserver-linux /nwn/data/bin/arm64/
 COPY scripts/run-server.sh scripts/prep-nwn-ini.awk scripts/prep-nwnplayer-ini.awk /nwn/
-COPY data/bin/linux-x86/nwserver-linux /nwn/data/bin/x86/
-COPY data/bin/linux-arm64/nwserver-linux /nwn/data/bin/arm64/
 RUN mkdir /nwn/data/bin/linux && dpkg --print-architecture
 RUN if $(dpkg --print-architecture) = "arm64"; then mv /nwn/data/bin/arm64/nwserver-linux /nwn/data/bin/linux/nwserver-linux ; else mv /nwn/data/bin/x86/nwserver-linux /nwn/data/bin/linux/nwserver-linux ; fi
 RUN chmod +x /nwn/data/bin/linux/nwserver-linux
