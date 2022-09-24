@@ -72,7 +72,7 @@ jobs:
       - run: |
           nimble install neverwinter -y
           ls ~/.nimble/bin
-          ~/.nimble/bin/nwn_resman_pkgsrv -d docker_data/data -k data/data/nwn_base
+          ~/.nimble/bin/nwn_resman_pkg -d docker_data/data -k data/data/nwn_base
 
           ls docker_data/bin
           ls docker_data/lang
