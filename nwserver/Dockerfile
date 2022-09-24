@@ -10,11 +10,13 @@ COPY --from=nwn /nwn/data/data/ /nwn/data/data/
 COPY --from=nwn /nwn/data/lang/ /nwn/data/lang/
 COPY scripts/run-server.sh scripts/prep-nwn-ini.awk scripts/prep-nwnplayer-ini.awk /nwn/
 COPY /data/bin/${NWN_ARCH} /nwn/data/bin/${NWN_ARCH}
-RUN chmod +x /nwn/data/bin/${NWN_ARCH}/nwserver-linux
-RUN chmod +x /nwn/run-server.sh
-VOLUME /nwn/home
-EXPOSE ${NWN_PORT:-5121}/udp
-ENV NWN_TAIL_LOGS=y
-ENV NWN_EXTRA_ARGS="-userdirectory /nwn/run"
-WORKDIR /nwn/data/bin/${NWN_ARCH}
-ENTRYPOINT ["/bin/bash", "/nwn/run-server.sh"]
+RUN echo $(dpkg --print-architecture)
+#RUN if $(dpkg --print-architecture) = ""; then echo 1; else echo 0; fi
+#RUN chmod +x /nwn/data/bin/${NWN_ARCH}/nwserver-linux
+#RUN chmod +x /nwn/run-server.sh
+#VOLUME /nwn/home
+#EXPOSE ${NWN_PORT:-5121}/udp
+#ENV NWN_TAIL_LOGS=y
+#ENV NWN_EXTRA_ARGS="-userdirectory /nwn/run"
+#WORKDIR /nwn/data/bin/${NWN_ARCH}
+#ENTRYPOINT ["/bin/bash", "/nwn/run-server.sh"]
