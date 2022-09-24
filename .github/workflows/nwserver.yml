@@ -9,7 +9,7 @@ jobs:
       matrix:
         version: ["8193.35"]
         platform: ["linux-x86", "linux-arm64"]
-    name: Generate ${{ matrix.language }} ${{ matrix.platform }} ${{ matrix.version }} dockerfile
+    name: Generate ${{ matrix.platform }} ${{ matrix.version }} dockerfile
     runs-on: ubuntu-latest
     env:
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -30,5 +30,5 @@ jobs:
           cd DepotDownloader/DepotDownloader
           dotnet run -app 704450 -depot 704454 -beta ${{ github.event.inputs.release }} -betapassword previewpreview -username ${{ secrets.STEAM_USER }} -password ${{ secrets.STEAM_PASS }}
           cd ${{ env.GITHUB_WORKSPACE }}
-          cp -r DepotDownloader/DepotDownloader/depots/704451/9334745/ data
+          cp -r DepotDownloader/DepotDownloader/depots/704451/7843474/ data
           ls data
