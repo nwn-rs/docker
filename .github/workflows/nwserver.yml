@@ -8,8 +8,7 @@ jobs:
     strategy:
       matrix:
         version: ["8193.35"]
-        platform: ["linux-x86", "linux-arm64"]
-    name: ${{ matrix.version }} ${{ matrix.platform }}
+    name: ${{ matrix.version }}
     runs-on: ubuntu-latest
     env:
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -34,31 +33,28 @@ jobs:
           gh repo clone SteamRE/DepotDownloader
       # 8193.35
       - name: Download build8193.35 nwn:ee files
-        if: ${{ matrix.version }} == '8193.35'
+        if: matrix.version == '8193.35'
         run: |
           cd DepotDownloader/DepotDownloader
           dotnet run -app 704450 -depot 704454 -beta preview -betapassword previewpreview -username ${{ secrets.STEAM_USER }} -password ${{ secrets.STEAM_PASS }}
           cd ../..
           cp -r DepotDownloader/DepotDownloader/depots/704454/9560766/ nwserver/data
-          ls nwserver/data/bin
       # x86
       - name: Building x86 nwserver
-        if: ${{ matrix.platform }} == 'linux-x86'
         uses: docker/build-push-action@v3
         with:
           build-args: |
-            NWN_ARCH=${{ matrix.platform }}
+            NWN_ARCH=linux-x86
           context: nwserver
           platforms: linux/amd64
           push: true
           tags: nwnrs/nwserver:${{ matrix.version }}
       # arm64
       - name: Building arm64 nwserver
-        if: ${{ matrix.platform }} == 'linux-arm64'
         uses: docker/build-push-action@v3
         with:
           build-args: |
-            NWN_ARCH=${{ matrix.platform }}
+            NWN_ARCH=linux-arm64
           context: nwserver
           platforms: linux/arm64
           push: true
