@@ -55,6 +55,8 @@ jobs:
           cp -r DepotDownloader/DepotDownloader/depots/$BIN_DEPOT_ID/$BUILD_ID/. data/
           cp -r DepotDownloader/DepotDownloader/depots/$CONTENT_DEPOT_ID/$BUILD_ID/. data/
 
+          ls data
+
           mkdir -p docker_data/data
           cp data/cacert.pem docker_data/data/cacert.pem
           cp data/nwn_base.key docker_data/data/nwn_base.key
