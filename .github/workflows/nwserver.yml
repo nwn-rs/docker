@@ -58,8 +58,8 @@ jobs:
           ls data
 
           mkdir -p docker_data/data
-          cp data/cacert.pem docker_data/data/cacert.pem
-          cp data/nwn_base.key docker_data/data/nwn_base.key
+          cp data/data/cacert.pem docker_data/data/cacert.pem
+          cp data/data/nwn_base.key docker_data/data/nwn_base.key
 
           mkdir -p docker_data/bin/x86
           cp data/bin/linux-x86/nwserver-linux docker_data/bin/x86/nwserver-linux
@@ -71,7 +71,7 @@ jobs:
           cp data/lang/en/data/dialog.tlk docker_data/lang/en/data/dialog.tlk
       - run: |
           nimble install neverwinter -y
-          nwn_resman_pkgsrv -d docker_data/data -k data/nwn_base
+          nwn_resman_pkgsrv -d docker_data/data -k data/data/nwn_base
 
           ls docker_data/bin
           ls docker_data/lang
