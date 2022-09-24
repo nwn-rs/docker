@@ -44,7 +44,7 @@ jobs:
       # x86
       - name: Building x86 nwserver
         if: ${{ matrix.platform }} == 'linux-x86'
-        uses: docker/build-push-action@v2
+        uses: docker/build-push-action@v3
         with:
           build-args: |
             NWN_ARCH=${{ matrix.platform }}
@@ -55,7 +55,7 @@ jobs:
       # arm64
       - name: Building arm64 nwserver
         if: ${{ matrix.platform }} == 'linux-arm64'
-        uses: docker/build-push-action@v2
+        uses: docker/build-push-action@v3
         with:
           build-args: |
             NWN_ARCH=${{ matrix.platform }}
