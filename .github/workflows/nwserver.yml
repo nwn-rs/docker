@@ -15,6 +15,8 @@ jobs:
     steps:
       - name: "Checkout source code"
         uses: "actions/checkout@v3"
+      - uses: jiro4989/setup-nim-action@v1
+      - run: nimble install neverwinter -y
       - name: Set up QEMU
         id: qemu
         uses: docker/setup-qemu-action@v1
@@ -41,6 +43,7 @@ jobs:
         run: |
           cd DepotDownloader/DepotDownloader
           dotnet run -app 704450 -depot 704454 -beta preview -betapassword previewpreview -username ${{ secrets.STEAM_USER }} -password ${{ secrets.STEAM_PASS }}
+          dotnet run -app 704450 -depot 704451 -beta preview -betapassword previewpreview -username ${{ secrets.STEAM_USER }} -password ${{ secrets.STEAM_PASS }}
           cd ../..
           cp -r DepotDownloader/DepotDownloader/depots/704454/9560766/ nwserver/data
       # docker
