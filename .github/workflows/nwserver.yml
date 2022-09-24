@@ -39,23 +39,13 @@ jobs:
           dotnet run -app 704450 -depot 704454 -beta preview -betapassword previewpreview -username ${{ secrets.STEAM_USER }} -password ${{ secrets.STEAM_PASS }}
           cd ../..
           cp -r DepotDownloader/DepotDownloader/depots/704454/9560766/ nwserver/data
-      # x86
-      - name: Building x86 nwserver
+      # docker
+      - name: Docker Build & Push
         uses: docker/build-push-action@v3
         with:
-          build-args: |
-            NWN_ARCH=linux-x86
           context: nwserver
-          platforms: linux/amd64
-          push: true
-          tags: nwnrs/nwserver:${{ matrix.version }}
-      # arm64
-      - name: Building arm64 nwserver
-        uses: docker/build-push-action@v3
-        with:
-          build-args: |
-            NWN_ARCH=linux-arm64
-          context: nwserver
-          platforms: linux/arm64
+          platforms: |
+            linux/arm64
+            linux/amd64
           push: true
           tags: nwnrs/nwserver:${{ matrix.version }}
