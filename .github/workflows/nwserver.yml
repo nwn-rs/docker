@@ -29,6 +29,6 @@ jobs:
         run: |
           cd DepotDownloader/DepotDownloader
           dotnet run -app 704450 -depot 704454 -beta ${{ github.event.inputs.release }} -betapassword previewpreview -username ${{ secrets.STEAM_USER }} -password ${{ secrets.STEAM_PASS }}
-          cd ${{ env.GITHUB_WORKSPACE }}
-          cp -r DepotDownloader/DepotDownloader/depots/704454/7843474/ data
-          ls data
+          cd ../..
+          cp -r DepotDownloader/DepotDownloader/depots/704454/7843474/ nwserver/data
+          ls nwserver/data
