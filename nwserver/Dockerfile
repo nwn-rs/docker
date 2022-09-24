@@ -1,6 +1,5 @@
 FROM beamdog/nwserver:latest AS nwn
 FROM debian:bookworm-slim
-ARG NWN_ARCH=linux-x86
 LABEL maintainer "urothis@gmail.com"
 RUN apt-get update && \
   apt-get --no-install-recommends -y install libc6 libstdc++6 && \
