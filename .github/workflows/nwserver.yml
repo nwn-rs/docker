@@ -71,7 +71,8 @@ jobs:
           cp data/lang/en/data/dialog.tlk docker_data/lang/en/data/dialog.tlk
       - run: |
           nimble install neverwinter -y
-          nwn_resman_pkgsrv -d docker_data/data -k data/data/nwn_base
+          ls ~/.nimble/
+          ~/.nimble/nwn_resman_pkgsrv -d docker_data/data -k data/data/nwn_base
 
           ls docker_data/bin
           ls docker_data/lang
