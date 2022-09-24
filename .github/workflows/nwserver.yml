@@ -38,14 +38,21 @@ jobs:
           gh repo clone SteamRE/DepotDownloader
       # 8193.35
       - name: Download build8193.35 nwn:ee files
+        env:
+          APP_ID: 704450
+          BUILD_ID: 9560766
+          BIN_DEPOT_ID: 704454
+          CONTENT_DEPOT_ID: 704451
+          BRANCH: preview
+          BRANCH_PASSWORD: previewpreview
         if: matrix.version == '8193.35'
         run: |
           cd DepotDownloader/DepotDownloader
-          dotnet run -app 704450 -depot 704454 -beta preview -betapassword previewpreview -username ${{ secrets.STEAM_USER }} -password ${{ secrets.STEAM_PASS }}
-          dotnet run -app 704450 -depot 704451 -beta preview -betapassword previewpreview -username ${{ secrets.STEAM_USER }} -password ${{ secrets.STEAM_PASS }}
+          dotnet run -app $APP_ID -depot $BIN_DEPOT_ID -beta $BRANCH -betapassword $BRANCH_PASSWORD -username ${{ secrets.STEAM_USER }} -password ${{ secrets.STEAM_PASS }}
+          dotnet run -app $APP_ID -depot $CONTENT_DEPOT_ID -beta $BRANCH -betapassword $BRANCH_PASSWORD -username ${{ secrets.STEAM_USER }} -password ${{ secrets.STEAM_PASS }}
           cd ../..
-          cp -r DepotDownloader/DepotDownloader/depots/704454/9560766/ nwserver/data
-
+          cp -r DepotDownloader/DepotDownloader/depots/$BIN_DEPOT_ID/$BUILD_ID/ nwserver/data/data
+          cp -r DepotDownloader/DepotDownloader/depots/$CONTENT_DEPOT_ID/$BUILD_ID/ nwserver/data/bin
       - run: nimble install neverwinter -y
       # docker
       - name: Docker Build & Push
