@@ -45,7 +45,7 @@ jobs:
           CONTENT_DEPOT_ID: 704451
           BRANCH: preview
           BRANCH_PASSWORD: previewpreview
-          NWN_ROOT: data/
+          NWN_ROOT: ./data/data
         if: matrix.version == '8193.35'
         run: |
           cd DepotDownloader/DepotDownloader
