@@ -71,7 +71,7 @@ jobs:
           cp data/lang/en/data/dialog.tlk docker_data/lang/en/data/dialog.tlk
       - name: Extract core bif files
         env:
-          NWN_ROOT: ./data/data
+          NWN_ROOT: ./data
         run: |
           nimble install neverwinter -y
           ls ~/.nimble/bin
