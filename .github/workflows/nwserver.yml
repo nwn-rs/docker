@@ -69,10 +69,12 @@ jobs:
           cp "Neverwinter Nights/lang/en/data/dialog.tlk" docker_data/lang/en/data/dialog.tlk
       - name: Extract core bif files
         env:
-          NWN_ROOT: "Neverwinter Nights/data"
+          NWN_ROOT: "./Neverwinter Nights"
         run: |
           nimble install neverwinter -y
           cd "Neverwinter Nights"
+          ls
+          ls data
           ~/.nimble/bin/nwn_resman_pkg -d docker_data/data
 
           ls docker_data/bin
