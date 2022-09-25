@@ -55,8 +55,6 @@ jobs:
           cp -r DepotDownloader/DepotDownloader/depots/$BIN_DEPOT_ID/$BUILD_ID/. data/
           cp -r DepotDownloader/DepotDownloader/depots/$CONTENT_DEPOT_ID/$BUILD_ID/. data/
 
-          ls data
-
           mkdir -p docker_data/data
           cp data/data/cacert.pem docker_data/data/cacert.pem
           cp data/data/nwn_base.key docker_data/data/nwn_base.key
@@ -71,7 +69,7 @@ jobs:
           cp data/lang/en/data/dialog.tlk docker_data/lang/en/data/dialog.tlk
       - name: Extract core bif files
         env:
-          NWN_ROOT: ./data
+          NWN_ROOT: ./data/data
         run: |
           nimble install neverwinter -y
           cd data/data
