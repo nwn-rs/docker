@@ -72,6 +72,8 @@ jobs:
           NWN_ROOT: "./Neverwinter Nights"
         run: |
           nimble install neverwinter -y
+          ls "Neverwinter Nights"
+          ls "Neverwinter Nights/data"
           ~/.nimble/bin/nwn_resman_pkg --root "Neverwinter Nights/data"
 
           ls docker_data/bin
