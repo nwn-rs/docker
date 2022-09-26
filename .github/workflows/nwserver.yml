@@ -75,7 +75,7 @@ jobs:
           cd "Neverwinter Nights"
           ls
           ls data
-          ~/.nimble/bin/nwn_resman_pkg -d docker_data/data --root "Neverwinter Nights/"
+          ~/.nimble/bin/nwn_resman_pkg --root "Neverwinter Nights" -d docker_data/data
 
           ls docker_data/bin
           ls docker_data/lang
