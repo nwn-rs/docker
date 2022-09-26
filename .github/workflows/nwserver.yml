@@ -36,6 +36,9 @@ jobs:
       - name: Clone SteamRE/DepotDownloader
         run: |
           gh repo clone SteamRE/DepotDownloader
+      - name: Install Neverwinter.nim
+        run: |
+          nimble install neverwinter -y
       # 8193.35
       - name: Download build8193.35 nwn:ee files
         env:
@@ -47,36 +50,21 @@ jobs:
           BRANCH_PASSWORD: previewpreview
         if: matrix.version == '8193.35'
         run: |
+          mkdir -p docker_data/data docker_data/lang/en/data docker_data/bin/x86 docker_data/bin/arm64
+
           cd DepotDownloader/DepotDownloader
           dotnet run -app $APP_ID -depot $BIN_DEPOT_ID -beta $BRANCH -betapassword $BRANCH_PASSWORD -username ${{ secrets.STEAM_USER }} -password ${{ secrets.STEAM_PASS }}
           dotnet run -app $APP_ID -depot $CONTENT_DEPOT_ID -beta $BRANCH -betapassword $BRANCH_PASSWORD -username ${{ secrets.STEAM_USER }} -password ${{ secrets.STEAM_PASS }}
-          cd ../..
-          mkdir "Neverwinter Nights"
-          cp -r DepotDownloader/DepotDownloader/depots/$BIN_DEPOT_ID/$BUILD_ID/. "Neverwinter Nights/"
-          cp -r DepotDownloader/DepotDownloader/depots/$CONTENT_DEPOT_ID/$BUILD_ID/. "Neverwinter Nights"
 
-          mkdir -p docker_data/data
-          cp "Neverwinter Nights/data/cacert.pem" docker_data/data/cacert.pem
-          cp "Neverwinter Nights/data/nwn_base.key" docker_data/data/nwn_base.key
+          cp -r depots/$BIN_DEPOT_ID/$BUILD_ID/. docker_data/bin/x86/nwserver-linux
+          cp -r depots/$BIN_DEPOT_ID/$BUILD_ID/. docker_data/bin/arm64/nwserver-linux
+          cp -r depots/$BIN_DEPOT_ID/$BUILD_ID/data/cacert.pem ../../docker_data/data/cacert.pem
+          cp -r depots/$BIN_DEPOT_ID/$BUILD_ID/data/nwn_base.key" ../../docker_data/data/nwn_base.key
+          cp -r depots/$BIN_DEPOT_ID/$BUILD_ID/data/en/data/dialog.tlk" ../../docker_data/lang/en/data/dialog.tlk
 
-          mkdir -p docker_data/bin/x86
-          cp "Neverwinter Nights/bin/linux-x86/nwserver-linux" docker_data/bin/x86/nwserver-linux
+          cd depots/$CONTENT_DEPOT_ID/$BUILD_ID/
 
-          mkdir -p docker_data/bin/arm64
-          cp "Neverwinter Nights/bin/linux-arm64/nwserver-linux" docker_data/bin/arm64/nwserver-linux
-
-          mkdir -p docker_data/lang/en/data
-          cp "Neverwinter Nights/lang/en/data/dialog.tlk" docker_data/lang/en/data/dialog.tlk
-      - name: Extract core bif files
-        env:
-          NWN_ROOT: "./Neverwinter Nights"
-        run: |
-          nimble install neverwinter -y
-          ls "Neverwinter Nights"
-          ls "Neverwinter Nights/data"
-          ls "Neverwinter Nights/data/lang"
-          ls "Neverwinter Nights/data/lang/en"
-          ~/.nimble/bin/nwn_resman_pkg --root "Neverwinter Nights/data"
+          ~/.nimble/bin/nwn_resman_pkg -d ../../../../docker_data
 
           ls docker_data/bin
           ls docker_data/lang
