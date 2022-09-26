@@ -56,8 +56,8 @@ jobs:
           dotnet run -app $APP_ID -depot $BIN_DEPOT_ID -beta $BRANCH -betapassword $BRANCH_PASSWORD -username ${{ secrets.STEAM_USER }} -password ${{ secrets.STEAM_PASS }}
           dotnet run -app $APP_ID -depot $CONTENT_DEPOT_ID -beta $BRANCH -betapassword $BRANCH_PASSWORD -username ${{ secrets.STEAM_USER }} -password ${{ secrets.STEAM_PASS }}
 
-          cp -r depots/$BIN_DEPOT_ID/$BUILD_ID/. docker_data/bin/x86/nwserver-linux
-          cp -r depots/$BIN_DEPOT_ID/$BUILD_ID/. docker_data/bin/arm64/nwserver-linux
+          cp -r depots/$BIN_DEPOT_ID/$BUILD_ID/. ../../docker_data/bin/x86/nwserver-linux
+          cp -r depots/$BIN_DEPOT_ID/$BUILD_ID/. ../../docker_data/bin/arm64/nwserver-linux
           cp -r depots/$BIN_DEPOT_ID/$BUILD_ID/data/cacert.pem ../../docker_data/data/cacert.pem
           cp -r depots/$BIN_DEPOT_ID/$BUILD_ID/data/nwn_base.key ../../docker_data/data/nwn_base.key
           cp -r depots/$BIN_DEPOT_ID/$BUILD_ID/data/en/data/dialog.tlk ../../docker_data/lang/en/data/dialog.tlk
