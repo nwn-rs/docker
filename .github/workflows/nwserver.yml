@@ -74,6 +74,8 @@ jobs:
           nimble install neverwinter -y
           ls "Neverwinter Nights"
           ls "Neverwinter Nights/data"
+          ls "Neverwinter Nights/data/lang"
+          ls "Neverwinter Nights/data/lang/en"
           ~/.nimble/bin/nwn_resman_pkg --root "Neverwinter Nights/data"
 
           ls docker_data/bin
