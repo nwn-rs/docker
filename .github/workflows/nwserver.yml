@@ -59,8 +59,8 @@ jobs:
           cp -r depots/$BIN_DEPOT_ID/$BUILD_ID/. docker_data/bin/x86/nwserver-linux
           cp -r depots/$BIN_DEPOT_ID/$BUILD_ID/. docker_data/bin/arm64/nwserver-linux
           cp -r depots/$BIN_DEPOT_ID/$BUILD_ID/data/cacert.pem ../../docker_data/data/cacert.pem
-          cp -r depots/$BIN_DEPOT_ID/$BUILD_ID/data/nwn_base.key" ../../docker_data/data/nwn_base.key
-          cp -r depots/$BIN_DEPOT_ID/$BUILD_ID/data/en/data/dialog.tlk" ../../docker_data/lang/en/data/dialog.tlk
+          cp -r depots/$BIN_DEPOT_ID/$BUILD_ID/data/nwn_base.key ../../docker_data/data/nwn_base.key
+          cp -r depots/$BIN_DEPOT_ID/$BUILD_ID/data/en/data/dialog.tlk ../../docker_data/lang/en/data/dialog.tlk
 
           cd depots/$CONTENT_DEPOT_ID/$BUILD_ID/
 
