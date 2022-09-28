@@ -58,10 +58,10 @@ jobs:
           cd depots/$CONTENT_DEPOT_ID/$BUILD_ID/
           nwn_resman_pkg -d $GITHUB_WORKSPACE/docker_data/data/data
           cd $GITHUB_WORKSPACE/nwserver
-          cp DepotDownloader/DepotDownloader/depots/$BIN_DEPOT_ID/$BUILD_ID/bin/linux-x86/nwserver-linux docker_data/data/bin/linux-x86/nwserver-linux
-          cp DepotDownloader/DepotDownloader/depots/$BIN_DEPOT_ID/$BUILD_ID/bin/linux-arm64/nwserver-linux docker_data/data/bin/linux-arm64/nwserver-linux
-          cp DepotDownloader/DepotDownloader/depots/$CONTENT_DEPOT_ID/$BUILD_ID/data/cacert.pem docker_data/data/data/cacert.pem
-          cp DepotDownloader/DepotDownloader/depots/$CONTENT_DEPOT_ID/$BUILD_ID/lang/en/data/dialog.tlk docker_data/lang/en/data/dialog.tlk
+          cp ../DepotDownloader/DepotDownloader/depots/$BIN_DEPOT_ID/$BUILD_ID/bin/linux-x86/nwserver-linux docker_data/data/bin/linux-x86/nwserver-linux
+          cp ../DepotDownloader/DepotDownloader/depots/$BIN_DEPOT_ID/$BUILD_ID/bin/linux-arm64/nwserver-linux docker_data/data/bin/linux-arm64/nwserver-linux
+          cp ../DepotDownloader/DepotDownloader/depots/$CONTENT_DEPOT_ID/$BUILD_ID/data/cacert.pem docker_data/data/data/cacert.pem
+          cp ../DepotDownloader/DepotDownloader/depots/$CONTENT_DEPOT_ID/$BUILD_ID/lang/en/data/dialog.tlk docker_data/lang/en/data/dialog.tlk
           cp scripts/. docker_data/
           cp module/. docker_data/data/data/mod/
       # docker
