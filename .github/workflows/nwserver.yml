@@ -62,8 +62,8 @@ jobs:
           cp DepotDownloader/DepotDownloader/depots/$BIN_DEPOT_ID/$BUILD_ID/bin/linux-arm64/nwserver-linux nwserver/docker_data/data/bin/linux-arm64/nwserver-linux
           cp DepotDownloader/DepotDownloader/depots/$CONTENT_DEPOT_ID/$BUILD_ID/data/cacert.pem nwserver/docker_data/data/data/cacert.pem
           cp DepotDownloader/DepotDownloader/depots/$CONTENT_DEPOT_ID/$BUILD_ID/lang/en/data/dialog.tlk nwserver/docker_data/lang/en/data/dialog.tlk
-          cp scripts/. nwserver/docker_data/
-          cp module/. nwserver/docker_data/data/data/mod/
+          cp nwserver/scripts/. nwserver/docker_data/
+          cp nwserver/module/. nwserver/docker_data/data/data/mod/
       # docker
       - name: Docker Build & Push
         uses: docker/build-push-action@v3
