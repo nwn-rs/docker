@@ -4,9 +4,7 @@ RUN apt-get update && \
   apt-get --no-install-recommends -y install libc6 libstdc++6 && \
   rm -r /var/cache/apt /var/lib/apt/lists && \
   mkdir -p /nwn/home /nwn/run
-COPY docker_data/data/ /nwn/data/data/
-COPY docker_data/lang/ /nwn/data/lang/
-COPY docker_data/bin/ /nwn/data/bin/
+COPY docker_data/data/ /nwn/data/
 COPY scripts/run-server.sh scripts/prep-nwn-ini.awk scripts/prep-nwnplayer-ini.awk /nwn/
 COPY module/DockerDemo.mod /nwn/data/data/mod/
 RUN mkdir /nwn/data/bin/linux && dpkg --print-architecture
@@ -19,5 +17,3 @@ ENV NWN_TAIL_LOGS=y
 ENV NWN_EXTRA_ARGS="-userdirectory /nwn/run"
 WORKDIR /nwn/data/bin/linux
 ENTRYPOINT ["/bin/bash", "/nwn/run-server.sh"]
-
-
