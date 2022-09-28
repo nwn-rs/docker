@@ -14,13 +14,6 @@ jobs:
     steps:
       - name: "Checkout source code"
         uses: "actions/checkout@v3"
-      - name: Cache nimble
-        id: cache-nimble
-        uses: actions/cache@v1
-        with:
-          path: ~/.nimble
-          key: ${{ runner.os }}-nimble-${{ hashFiles('*.nimble') }}
-        if: runner.os != 'Windows'
       - uses: jiro4989/setup-nim-action@v1
       - name: Set up QEMU
         id: qemu
@@ -42,25 +35,11 @@ jobs:
       - name: Clone SteamRE/DepotDownloader
         run: |
           gh repo clone SteamRE/DepotDownloader
-      - name: Cache nimble
-        id: cache-neverwinter-nim
-        uses: actions/cache@v1
-        with:
-          path: ~/.nimble/bin
-          key: ${{ runner.os }}-nimble-neverwinter-${{ hashFiles('*.bin') }}
-        if: runner.os != 'Windows'
       - name: Install Neverwinter.nim
         run: |
           nimble install neverwinter -y
           echo "~/.nimble/bin" >> $GITHUB_PATH
       # 8193.35
-      - name: Cache nimble
-        id: cache-neverwinter
-        uses: actions/cache@v1
-        with:
-          path: ~/.nimble/bin
-          key: ${{ runner.os }}-neverwinter-9601420
-        if: runner.os != 'Windows'
       - name: Download build8193.35 nwn:ee files
         env:
           APP_ID: 704450
@@ -79,10 +58,6 @@ jobs:
           cd depots/$CONTENT_DEPOT_ID/$BUILD_ID/
           nwn_resman_pkg -d $GITHUB_WORKSPACE/docker_data/data
           cd $GITHUB_WORKSPACE
-
-          ls DepotDownloader/DepotDownloader/depots/$BIN_DEPOT_ID/$BUILD_ID/bin
-          ls DepotDownloader/DepotDownloader/depots/$BIN_DEPOT_ID/$BUILD_ID/bin/linux-arm64
-
           cp DepotDownloader/DepotDownloader/depots/$BIN_DEPOT_ID/$BUILD_ID/bin/linux-x86/nwserver-linux docker_data/bin/linux-x86/nwserver-linux
           cp DepotDownloader/DepotDownloader/depots/$BIN_DEPOT_ID/$BUILD_ID/bin/linux-arm64/nwserver-linux docker_data/bin/linux-arm64/nwserver-linux
           cp DepotDownloader/DepotDownloader/depots/$CONTENT_DEPOT_ID/$BUILD_ID/data/cacert.pem docker_data/data/cacert.pem
