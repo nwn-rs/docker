@@ -81,7 +81,7 @@ jobs:
           cd $GITHUB_WORKSPACE
 
           ls DepotDownloader/DepotDownloader/depots/$BIN_DEPOT_ID/$BUILD_ID/bin
-
+          ls DepotDownloader/DepotDownloader/depots/$BIN_DEPOT_ID/$BUILD_ID/bin/linux-arm64
 
           cp DepotDownloader/DepotDownloader/depots/$BIN_DEPOT_ID/$BUILD_ID/bin/linux-x86/nwserver-linux docker_data/bin/linux-x86/nwserver-linux
           cp DepotDownloader/DepotDownloader/depots/$BIN_DEPOT_ID/$BUILD_ID/bin/linux-arm64/nwserver-linux docker_data/bin/linux-arm64/nwserver-linux
