@@ -75,7 +75,11 @@ if [[ "${NWN_NWSYNCHASH}" != "" ]]; then
   args+=("-nwsynchash" "${NWN_NWSYNCHASH}")
 fi
 
-dpkg --print-architecture
+if [[ "$(dpkg --print-architecture)" != "arm64" ]]; then
+  cd linux-x86/
+else
+  cd linux-arm64/
+fi
 
 set +e
 LD_PRELOAD=$NWN_LD_PRELOAD LD_LIBRARY_PATH=$NWN_LD_LIBRARY_PATH ./nwserver-linux \
