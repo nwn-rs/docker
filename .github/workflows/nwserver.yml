@@ -39,6 +39,8 @@ jobs:
       - name: Install Neverwinter.nim
         run: |
           nimble install neverwinter -y
+          echo "~/.nimble/bin" >> $GITHUB_PATH
+
       # 8193.35
       - name: Download build8193.35 nwn:ee files
         env:
@@ -49,7 +51,6 @@ jobs:
           BRANCH: preview
           BRANCH_PASSWORD: previewpreview
           NWN_ROOT: ./
-          PATH: $PATH:~/.nimble/bin
         if: matrix.version == '8193.35'
         run: |
           mkdir -p docker_data/data docker_data/lang/en/data docker_data/bin/x86 docker_data/bin/arm64
