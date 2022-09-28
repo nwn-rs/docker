@@ -56,31 +56,15 @@ jobs:
           cd DepotDownloader/DepotDownloader
           dotnet run -app $APP_ID -depot $BIN_DEPOT_ID -beta $BRANCH -betapassword $BRANCH_PASSWORD -username ${{ secrets.STEAM_USER }} -password ${{ secrets.STEAM_PASS }}
           dotnet run -app $APP_ID -depot $CONTENT_DEPOT_ID -beta $BRANCH -betapassword $BRANCH_PASSWORD -username ${{ secrets.STEAM_USER }} -password ${{ secrets.STEAM_PASS }}
-          echo "---"
-          ls depots
-          echo "---"
-          ls depots/$CONTENT_DEPOT_ID
-          echo "---"
-          ls depots/$CONTENT_DEPOT_ID/$BUILD_ID
-          echo "---"
+          cd depots/$CONTENT_DEPOT_ID/$BUILD_ID/
+          ~/.nimble/bin/nwn_resman_pkg -d ../../../../docker_data
+
+          cd ../../../../
           cp -r depots/$BIN_DEPOT_ID/$BUILD_ID/bin/linux-x86/nwserver-linux ../../docker_data/bin/x86/nwserver-linux
           cp -r depots/$BIN_DEPOT_ID/$BUILD_ID/bin/linux-arm64/nwserver-linux ../../docker_data/bin/arm64/nwserver-linux
           cp -r depots/$CONTENT_DEPOT_ID/$BUILD_ID/data/cacert.pem ../../docker_data/data/cacert.pem
           cp -r depots/$CONTENT_DEPOT_ID/$BUILD_ID/data/nwn_base.key ../../docker_data/data/nwn_base.key
           cp -r depots/$CONTENT_DEPOT_ID/$BUILD_ID/lang/en/data/dialog.tlk ../../docker_data/lang/en/data/dialog.tlk
-          ls depots/$CONTENT_DEPOT_ID/$BUILD_ID/lang
-
-          echo "--- isda"
-          ls depots/$CONTENT_DEPOT_ID/$BUILD_ID/data
-
-          echo "--- isda"
-
-
-          cd depots/$CONTENT_DEPOT_ID/$BUILD_ID/
-
-          echo "--- isasda"
-          ls
-          ~/.nimble/bin/nwn_resman_pkg -d ../../../../docker_data
 
           ls docker_data/bin
           ls docker_data/lang
