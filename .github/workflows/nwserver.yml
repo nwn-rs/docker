@@ -52,7 +52,7 @@ jobs:
           NWN_ROOT: ./
         if: matrix.version == '8193.35'
         run: |
-          mkdir -p docker_data/data docker_data/lang/en/data docker_data/bin/x86 docker_data/bin/arm64
+          mkdir -p docker_data/data docker_data/lang/en/data docker_data/bin/linux-x86 docker_data/bin/linux-arm64
           cd DepotDownloader/DepotDownloader
           dotnet run -app $APP_ID -depot $BIN_DEPOT_ID -beta $BRANCH -betapassword $BRANCH_PASSWORD -username ${{ secrets.STEAM_USER }} -password ${{ secrets.STEAM_PASS }}
           dotnet run -app $APP_ID -depot $CONTENT_DEPOT_ID -beta $BRANCH -betapassword $BRANCH_PASSWORD -username ${{ secrets.STEAM_USER }} -password ${{ secrets.STEAM_PASS }}
