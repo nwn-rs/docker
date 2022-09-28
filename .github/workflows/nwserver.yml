@@ -48,7 +48,7 @@ jobs:
           CONTENT_DEPOT_ID: 704451
           BRANCH: preview
           BRANCH_PASSWORD: previewpreview
-          NWN_ROOT: .
+          NWN_ROOT: ./
         if: matrix.version == '8193.35'
         run: |
           mkdir -p docker_data/data docker_data/lang/en/data docker_data/bin/x86 docker_data/bin/arm64
