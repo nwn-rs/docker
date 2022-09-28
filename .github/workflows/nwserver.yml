@@ -1,7 +1,6 @@
 name: Nwserver
 
-on:
-  workflow_dispatch:
+on: push
 
 jobs:
   nwserver:
