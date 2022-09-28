@@ -48,6 +48,7 @@ jobs:
           CONTENT_DEPOT_ID: 704451
           BRANCH: preview
           BRANCH_PASSWORD: previewpreview
+          NWN_ROOT: .
         if: matrix.version == '8193.35'
         run: |
           mkdir -p docker_data/data docker_data/lang/en/data docker_data/bin/x86 docker_data/bin/arm64
@@ -69,7 +70,7 @@ jobs:
           cp -r depots/$CONTENT_DEPOT_ID/$BUILD_ID/lang/en/data/dialog.tlk ../../docker_data/lang/en/data/dialog.tlk
 
           cd depots/$CONTENT_DEPOT_ID/$BUILD_ID/
-
+          ls
           ~/.nimble/bin/nwn_resman_pkg -d ../../../../docker_data
 
           ls docker_data/bin
