@@ -64,8 +64,7 @@ jobs:
           cp DepotDownloader/DepotDownloader/depots/$CONTENT_DEPOT_ID/$BUILD_ID/lang/en/data/dialog.tlk nwserver/docker_data/lang/en/data/dialog.tlk
           cp -r nwserver/scripts/. nwserver/docker_data/
           cp -r nwserver/module/. nwserver/docker_data/data/data/mod/
-
-          # docker
+      # docker
       - name: Docker Build & Push
         uses: docker/build-push-action@v3
         with:
