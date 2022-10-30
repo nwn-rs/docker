@@ -43,7 +43,7 @@ jobs:
       - name: Download build8193.35 nwn:ee files
         env:
           APP_ID: 704450
-          BUILD_ID: 9617071
+          BUILD_ID: 9685354
           BIN_DEPOT_ID: 704454
           CONTENT_DEPOT_ID: 704451
           BRANCH: preview
