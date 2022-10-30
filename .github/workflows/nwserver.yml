@@ -58,7 +58,7 @@ jobs:
           cd depots/$CONTENT_DEPOT_ID/$BUILD_ID/
           nwn_resman_pkg --userdirectory . -d $GITHUB_WORKSPACE/nwserver/docker_data/data/data
           cd $GITHUB_WORKSPACE
-          cp DepotDownloader/DepotDownloader/depots/$BIN_DEPOT_ID/$BUILD_ID/bin/linux-x86/nwserver-linux nwserver/docker_data/data/bin/linux-x86/nwserver-linux
+          cp DepotDownloader/DepotDownloader/depots/$BIN_DEPOT_ID/$BUILD_ID/bin/linux-x86/nwserver-linux nwserver/docker_data/data/bin/linux-amd64/nwserver-linux
           cp DepotDownloader/DepotDownloader/depots/$BIN_DEPOT_ID/$BUILD_ID/bin/linux-arm64/nwserver-linux nwserver/docker_data/data/bin/linux-arm64/nwserver-linux
           cp DepotDownloader/DepotDownloader/depots/$CONTENT_DEPOT_ID/$BUILD_ID/data/cacert.pem nwserver/docker_data/data/data/cacert.pem
           cp DepotDownloader/DepotDownloader/depots/$CONTENT_DEPOT_ID/$BUILD_ID/lang/en/data/dialog.tlk nwserver/docker_data/lang/en/data/dialog.tlk
@@ -69,8 +69,8 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           context: nwserver
-          # linux/amd64
           platforms: |
+            linux/amd64
             linux/arm64
           push: true
           tags: nwnrs/nwserver:${{ matrix.version }}
