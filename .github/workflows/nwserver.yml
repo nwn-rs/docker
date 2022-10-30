@@ -56,7 +56,7 @@ jobs:
           dotnet run -app $APP_ID -depot $BIN_DEPOT_ID -beta $BRANCH -betapassword $BRANCH_PASSWORD -username ${{ secrets.STEAM_USER }} -password ${{ secrets.STEAM_PASS }}
           dotnet run -app $APP_ID -depot $CONTENT_DEPOT_ID -beta $BRANCH -betapassword $BRANCH_PASSWORD -username ${{ secrets.STEAM_USER }} -password ${{ secrets.STEAM_PASS }}
           cd depots/$CONTENT_DEPOT_ID/$BUILD_ID/
-          nwn_resman_pkg -d $GITHUB_WORKSPACE/nwserver/docker_data/data/data
+          nwn_resman_pkg --userdirectory . -d $GITHUB_WORKSPACE/nwserver/docker_data/data/data
           cd $GITHUB_WORKSPACE
           cp DepotDownloader/DepotDownloader/depots/$BIN_DEPOT_ID/$BUILD_ID/bin/linux-x86/nwserver-linux nwserver/docker_data/data/bin/linux-x86/nwserver-linux
           cp DepotDownloader/DepotDownloader/depots/$BIN_DEPOT_ID/$BUILD_ID/bin/linux-arm64/nwserver-linux nwserver/docker_data/data/bin/linux-arm64/nwserver-linux
