@@ -17,4 +17,5 @@ EXPOSE ${NWN_PORT:-5121}/udp
 ENV NWN_TAIL_LOGS=y
 ENV NWN_EXTRA_ARGS="-userdirectory /nwn/run"
 WORKDIR /nwn/data/bin/${TARGETOS}-${TARGETARCH}
+RUN chmod +x nwserver-linux
 ENTRYPOINT ["/bin/bash", "/nwn/run-server.sh"]
