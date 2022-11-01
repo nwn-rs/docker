@@ -2,7 +2,7 @@
 FROM debian:bookworm-slim
 LABEL maintainer "urothis@gmail.com"
 ARG TARGETOS TARGETARCH
-COPY docker_data/data/data /nwn/data/data/data
+COPY docker_data/data/data /nwn/data/data
 COPY docker_data/run-server.sh /nwn/run-server.sh
 COPY docker_data/data/bin/${TARGETOS}-${TARGETARCH}/nwserver-linux /nwn/data/bin/${TARGETOS}-${TARGETARCH}/nwserver-linux
 COPY docker_data/lang/ /nwn/data/lang/
